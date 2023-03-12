@@ -1,6 +1,6 @@
 # chargedesign
  choose protein surface residues minimizing fluctuations of surface electrostatic potential
  
-* background: theory/
+* background: theory/chargedesign_theory.pdf
 * documentation: docs/build/html/index.html
-* required output folders now empty: pml, pdb, residuesets,   
+* suggested additional output folders (add yourselves): pml, pdb, residuesets, res, scores   
