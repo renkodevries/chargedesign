@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>module pdbatom &mdash; chargedesign 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="module residuesets" href="residuesets.html" />
+    <link rel="prev" title="module geometry" href="geometry.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            chargedesign
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dx.html">module dx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sas.html">module sas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="potentials.html">module potentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geometry.html">module geometry</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">module pdbatom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="residuesets.html">module residuesets</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">chargedesign</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">module pdbatom</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/pdbatom.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-0">
+<span id="module-pdbatom"></span><h1>module pdbatom<a class="headerlink" href="#module-0" title="Permalink to this heading"></a></h1>
+<p>module containing class PdbAtom</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pdbatom.PdbAtom">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pdbatom.</span></span><span class="sig-name descname"><span class="pre">PdbAtom</span></span><a class="headerlink" href="#pdbatom.PdbAtom" title="Permalink to this definition"></a></dt>
+<dd><p>Lightweight class for reading ATOM lines of pdb files</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>atomSerialNumber</strong> – pdb atomSerialNumber</p></li>
+<li><p><strong>atomName</strong> (<cite>str</cite>) – pdb atomName</p></li>
+<li><p><strong>alternateLocationIndicator</strong> (<cite>str</cite>) – pdb alternateLocationIndicator</p></li>
+<li><p><strong>residueName</strong> (<cite>str</cite>) – pdb residueName</p></li>
+<li><p><strong>chainIdentifier</strong> (<cite>int</cite>) – pdb chainIdentifier</p></li>
+<li><p><strong>residueSequenceNumber</strong> – pdb residueSequenceNumber</p></li>
+<li><p><strong>insertionCode</strong> (<cite>str</cite>) – pdb insertionCode</p></li>
+<li><p><strong>xOrthogonalCoordinate</strong> (<cite>float</cite>) – pdb xOrthogonalCoordinate</p></li>
+<li><p><strong>yOrthogonalCoordinate</strong> (<cite>float</cite>) – pdb yOrthogonalCoordinate</p></li>
+<li><p><strong>zOrthogonalCoordinate</strong> (<cite>float</cite>) – pdb zOrthogonalCoordinate</p></li>
+<li><p><strong>occupancy</strong> (<cite>float</cite>) – pdb occupancy</p></li>
+<li><p><strong>temperatureFactor</strong> (<cite>float</cite>) – pdb temperatureFactor</p></li>
+<li><p><strong>temperatureFactor</strong> – pdb temperatureFactor</p></li>
+<li><p><strong>elementSymbol</strong> (<cite>str</cite>) – pdb elementSymbol</p></li>
+<li><p><strong>charge</strong> (<cite>str</cite>) – pdb charge</p></li>
+</ul>
+</dd>
+<dt class="field-even">Example<span class="colon">:</span></dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># read all atom lines from pdb file</span>
+<span class="n">atoms</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;mystruct.pdb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">pdb_lines</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">pdb_line</span> <span class="ow">in</span> <span class="n">pdb_lines</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">pdb_line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;ATOM&#39;</span><span class="p">):</span>
+                <span class="n">atom</span> <span class="o">=</span> <span class="n">pdbatom</span><span class="o">.</span><span class="n">PdbAtom</span><span class="p">()</span>
+                <span class="n">atom</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">pdb_line</span><span class="p">)</span>
+                <span class="n">atoms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">atom</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pdbatom.PdbAtom.__init__">
+<span class="sig-prename descclassname"><span class="pre">PdbAtom.</span></span><span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pdbatom.PdbAtom.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor, creates empty PdbAtom</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pdbatom.PdbAtom.print">
+<span class="sig-prename descclassname"><span class="pre">PdbAtom.</span></span><span class="sig-name descname"><span class="pre">print</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pdbatom.PdbAtom.print" title="Permalink to this definition"></a></dt>
+<dd><p>Report on PdbAtom class member values</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pdbatom.PdbAtom.parse">
+<span class="sig-prename descclassname"><span class="pre">PdbAtom.</span></span><span class="sig-name descname"><span class="pre">parse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pdbatom.PdbAtom.parse" title="Permalink to this definition"></a></dt>
+<dd><p>Parse PdbAtom values from pdb ATOM line</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>line</strong> (<cite>str</cite>) – pdb ATOM line</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pdbatom.PdbAtom.format">
+<span class="sig-prename descclassname"><span class="pre">PdbAtom.</span></span><span class="sig-name descname"><span class="pre">format</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pdbatom.PdbAtom.format" title="Permalink to this definition"></a></dt>
+<dd><p>Format pdb ATOM line from PdbAtom</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pdb ATOM line</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><cite>str</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="geometry.html" class="btn btn-neutral float-left" title="module geometry" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="residuesets.html" class="btn btn-neutral float-right" title="module residuesets" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Renko de Vries.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

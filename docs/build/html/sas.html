@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>module sas &mdash; chargedesign 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="module potentials" href="potentials.html" />
+    <link rel="prev" title="module dx" href="dx.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            chargedesign
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="makeresiduesets.html">script makeresiduesets</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dx.html">module dx</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">module sas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="potentials.html">module potentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geometry.html">module geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pdbatom.html">module pdbatom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="residuesets.html">module residuesets</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">chargedesign</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">module sas</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/sas.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-0">
+<span id="module-sas"></span><h1>module sas<a class="headerlink" href="#module-0" title="Permalink to this heading"></a></h1>
+<p>module containing the class Sas</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.Sas">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.</span></span><span class="sig-name descname"><span class="pre">Sas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pdb_in</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.Sas" title="Permalink to this definition"></a></dt>
+<dd><p>Class for computing solvent accessible surface from pdb files. Dependencies: pdbatom, numpy, math, scipy.
+The solvent accessible surface is calculated as a list of dots. First, for each atom, an exclusion sphere around the atom (with radius equal to the
+vanderwaalsradius of the atom plus the probe radius), is covered with dots. Next, dots of the atom which are occluded by
+exclusion spheres of other atoms are eliminated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pdb_in</strong> (<cite>str</cite>) – path to pdb file with input structure</p></li>
+<li><p><strong>atoms</strong> (<cite>list</cite> of <cite>PdbAtom</cite>, length <cite>n_atoms</cite>.) – list of atoms as read from pdb_in</p></li>
+<li><p><strong>n_atoms</strong> (<cite>int</cite>) – number of atoms read from pdb_in</p></li>
+<li><p><strong>atom_radius</strong> (<cite>list</cite> of <cite>float</cite>, length <cite>n_atoms</cite>.) – list of atom vanderwaals radii</p></li>
+<li><p><strong>atom_position</strong> (<cite>numpy.array</cite> with shape (<cite>n_atoms</cite>,3)) – array holding atom coordinates</p></li>
+<li><p><strong>element_radius</strong> (<cite>dict()</cite>) – dictionary with atom vanderwaalsradii (values, <cite>float</cite>) of chemical elements (keys, <cite>str</cite>)</p></li>
+<li><p><strong>neighbourlist_cutoff</strong> (<cite>float</cite>) – for finding neighbouring atoms (Angstrom)</p></li>
+<li><p><strong>probe_radius</strong> (<cite>float</cite>) – radius of rolling sphere defining solvent accessible surface area (Angstrom)</p></li>
+<li><p><strong>dots_per_atom</strong> (<cite>int</cite>) – number of dots used to approximate solvent acessible surface around each atom</p></li>
+<li><p><strong>neighbourlist</strong> (<cite>list</cite> of <cite>list</cite> of <cite>int</cite>) – for each atom a list of atom indices of neighbouring atoms (within neighbourlist_cutoff)</p></li>
+<li><p><strong>atom_dots</strong> (<cite>list</cite> of <cite>numpy.array</cite> (list length <cite>n_atoms</cite>), each with shape (<cite>dots_per_atom</cite>,3)) – coordinates of all dots, per atom</p></li>
+<li><p><strong>indices_selected_dots_per_atom</strong> (<cite>list</cite> (length <cite>n_atoms</cite>) of <cite>list</cite> of <cite>int</cite>) – indices for dots (from atom_dots) which are solvent acessible, per atom</p></li>
+<li><p><strong>self.ndots_sas</strong> (<cite>int</cite>) – total number of dots forming solvent acessible surface</p></li>
+</ul>
+</dd>
+<dt class="field-even">Example<span class="colon">:</span></dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># lets get the dots forming the surface accesible area of atom 3        </span>
+<span class="n">sas</span> <span class="o">=</span> <span class="n">sas</span><span class="o">.</span><span class="n">Sas</span><span class="p">(</span><span class="s2">&quot;trimer.pdb&quot;</span><span class="p">)</span>
+<span class="n">all_dots</span> <span class="o">=</span> <span class="n">sas</span><span class="o">.</span><span class="n">atom_dots</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">selected_dot_indices</span> <span class="o">=</span> <span class="n">sas</span><span class="o">.</span><span class="n">indices_selected_dots_per_atom</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">n_surface_dots</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">selected_dot_indices</span><span class="p">)</span>
+<span class="n">surface_dots</span> <span class="o">=</span> <span class="p">[</span><span class="n">all_dots</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">selected_dot_indices</span><span class="p">]</span> <span class="c1"># list of numpy arrays with shape (3,)       </span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.Sas.__init__">
+<span class="sig-prename descclassname"><span class="pre">Sas.</span></span><span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pdb_in</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.Sas.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor. All computations are done immediately after calling the constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pdb_in</strong> (<cite>str</cite>) – path to pdb file with input structure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.Sas.set_default_parameter_values">
+<span class="sig-prename descclassname"><span class="pre">Sas.</span></span><span class="sig-name descname"><span class="pre">set_default_parameter_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.Sas.set_default_parameter_values" title="Permalink to this definition"></a></dt>
+<dd><p>Sets these default parameter values: <cite>probe_radius</cite> = 1.4 Angstrom, 
+<cite>dots_per_atom</cite> = 50, <cite>neighbourlist_cutoff</cite> = 7.0 Angstrom, 
+<cite>element_radius</cite> [‘C’] = 1.9 Angstrom, <cite>element_radius</cite> [‘N’]= 1.7 Angstrom,    
+<cite>element_radius</cite> [‘O’] = 1.5 Angstrom, <cite>element_radius</cite> [‘S’] = 1.9 Angstrom.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.Sas.print_parameter_values">
+<span class="sig-prename descclassname"><span class="pre">Sas.</span></span><span class="sig-name descname"><span class="pre">print_parameter_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.Sas.print_parameter_values" title="Permalink to this definition"></a></dt>
+<dd><p>Print values of <cite>probe_radius</cite> , <cite>dots_per_atom</cite>,
+<cite>neighbourlist_cutoff</cite> and the <cite>element_radius</cite> dict.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.Sas.set_atom_position_and_radius_arrays">
+<span class="sig-prename descclassname"><span class="pre">Sas.</span></span><span class="sig-name descname"><span class="pre">set_atom_position_and_radius_arrays</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.Sas.set_atom_position_and_radius_arrays" title="Permalink to this definition"></a></dt>
+<dd><p>Sets <cite>atom_position</cite> and <cite>atom_radius</cite> arrays, called 
+after <cite>load_atoms</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.Sas.build_neighbour_list">
+<span class="sig-prename descclassname"><span class="pre">Sas.</span></span><span class="sig-name descname"><span class="pre">build_neighbour_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.Sas.build_neighbour_list" title="Permalink to this definition"></a></dt>
+<dd><p>Builds neighbour list for each atom. For each central atom,
+only atoms in its neighbourlist are use to identify dots that
+are solvent accessible.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.Sas.load_atoms">
+<span class="sig-prename descclassname"><span class="pre">Sas.</span></span><span class="sig-name descname"><span class="pre">load_atoms</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.Sas.load_atoms" title="Permalink to this definition"></a></dt>
+<dd><p>Reads <cite>pdb_file</cite>, sets <cite>atoms</cite> list and <cite>natoms</cite>. 
+Only heavy atoms are retained.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.Sas.generate_sphere_points">
+<span class="sig-prename descclassname"><span class="pre">Sas.</span></span><span class="sig-name descname"><span class="pre">generate_sphere_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.Sas.generate_sphere_points" title="Permalink to this definition"></a></dt>
+<dd><p>Returns list of coordinates on a sphere of radius 1 using the Golden-Section Spiral algorithm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>n</strong> (<cite>int</cite>) – number of dots on the sphere</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of coordinates of points covering a sphere of radius 1</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><cite>numpy.array</cite> shape (<cite>n</cite>,3)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.Sas.compute_sas">
+<span class="sig-prename descclassname"><span class="pre">Sas.</span></span><span class="sig-name descname"><span class="pre">compute_sas</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.Sas.compute_sas" title="Permalink to this definition"></a></dt>
+<dd><p>Finds which dots on the atom spheres are solvent-acessible. Sets 
+<cite>indices_selected_dots_per_atom</cite>. Also sets the total number of 
+solvent accessible atom dots for the entire structure, this is
+used by <cite>export_xyz</cite></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.Sas.export_xyz">
+<span class="sig-prename descclassname"><span class="pre">Sas.</span></span><span class="sig-name descname"><span class="pre">export_xyz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.Sas.export_xyz" title="Permalink to this definition"></a></dt>
+<dd><p>Exports solvent accessible dots to xyz file <cite>filename</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<cite>str</cite>) – path to xyz file</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dx.html" class="btn btn-neutral float-left" title="module dx" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="potentials.html" class="btn btn-neutral float-right" title="module potentials" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Renko de Vries.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

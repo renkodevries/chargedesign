@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>module potentials &mdash; chargedesign 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="module geometry" href="geometry.html" />
+    <link rel="prev" title="module sas" href="sas.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            chargedesign
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="makeresiduesets.html">script makeresiduesets</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dx.html">module dx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sas.html">module sas</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">module potentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geometry.html">module geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pdbatom.html">module pdbatom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="residuesets.html">module residuesets</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">chargedesign</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">module potentials</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/potentials.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-0">
+<span id="module-potentials"></span><h1>module potentials<a class="headerlink" href="#module-0" title="Permalink to this heading"></a></h1>
+<p>module containing class Potentials</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="potentials.Potentials">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">potentials.</span></span><span class="sig-name descname"><span class="pre">Potentials</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pdb_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_residues</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#potentials.Potentials" title="Permalink to this definition"></a></dt>
+<dd><p>Class for calculating averages of the electrostatic potentials of proteins at 
+their solvent accessible surfaces. Computes the average potential <cite>psi_av</cite> and the
+its mean square fluctuations <cite>delta_psi_sq</cite>. Calls pqr2pdb to convert the input pdb file 
+into pqr file with atom charge. Next calls APBS which takes the pqr file as input and
+produces a .dx file with values of the electrostatic potential on a regular spatial grid.
+Next calculates the averages, using modules dx and sas. Finally deletes all intermediate files 
+no longer needed.</p>
+<p>Requires that pdb2pqr and apbs have been installed. Other (non standard) Python dependencies: 
+gridData, scipy.interpolate, numpy, plus the local modules pdbatom, dx and sas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pdb_in</strong> (<cite>str</cite>) – path to pdb file with input structure</p></li>
+<li><p><strong>pqr_file</strong> (<cite>str</cite>) – path to pqr file produced by pdb2pqr</p></li>
+<li><p><strong>dx_file</strong> (<cite>str</cite>) – path to dx file produced by APBS</p></li>
+<li><p><strong>apbs_inputfile</strong> (<cite>str</cite>) – path to APBS input file produced by filling the <cite>apbs_template</cite></p></li>
+<li><p><strong>exclude_residues</strong> (<cite>list</cite> of <cite>int</cite>) – averages <cite>psi_av</cite> and <cite>delta_psi_sq</cite> are obatined by averaging over all residues minus the exclude_residues</p></li>
+<li><p><strong>apbs_template</strong> (<cite>str</cite>) – path to template input file for APBS, this file must already be present.</p></li>
+<li><p><strong>sas</strong> (<cite>sas.Sas</cite>) – class instance of sas.Sas for computing solvent accessible surface</p></li>
+<li><p><strong>dx</strong> (<cite>dx.Dx</cite>) – class instance of dx.Dx for interpolating potentials from APBS.</p></li>
+<li><p><strong>areas</strong> (<cite>list</cite> (length <cite>sas.natom</cite>) of <cite>float</cite>) – solvent accessible surface area per atom (only heavy atoms)</p></li>
+<li><p><strong>potentials</strong> (<cite>list</cite> (length <cite>sas.natom</cite>) of <cite>float</cite>) – average potentials at solvent accessible surface per atom (only heavy atoms)</p></li>
+<li><p><strong>psi_av</strong> (<cite>float</cite>) – average potential,averaged over all residues minus those in exclude_residues</p></li>
+<li><p><strong>delta_psi_sq</strong> (<cite>float</cite>) – mean square potential,averaged over all residues minus those in exclude_residues</p></li>
+</ul>
+</dd>
+<dt class="field-even">Example<span class="colon">:</span></dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">pot</span> <span class="o">=</span> <span class="n">potentials</span><span class="o">.</span><span class="n">Potentials</span><span class="p">(</span><span class="s2">&quot;mystruct.pdb&quot;</span><span class="p">,</span><span class="n">exclude_residues</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;psi_av  = &quot;</span><span class="p">,</span><span class="n">pot</span><span class="o">.</span><span class="n">psi_av</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;delta_psi_sq  = &quot;</span><span class="p">,</span><span class="n">pot</span><span class="o">.</span><span class="n">delta_psi_sq</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="potentials.Potentials.__init__">
+<span class="sig-prename descclassname"><span class="pre">Potentials.</span></span><span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pdb_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_residues</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#potentials.Potentials.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor. All computations are done immediately after calling the constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pdb_file</strong> (<cite>str</cite>) – path to pdb file with input structure</p></li>
+<li><p><strong>exclude_residues</strong> – list of residue indices (residue sequence numbers from pdb file)</p></li>
+</ul>
+</dd>
+</dl>
+<p>for residues to be excluded from computing potential averages 
+:type exclude_residues: <cite>list</cite> of <cite>int</cite></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="potentials.Potentials.clean_pdb">
+<span class="sig-prename descclassname"><span class="pre">Potentials.</span></span><span class="sig-name descname"><span class="pre">clean_pdb</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#potentials.Potentials.clean_pdb" title="Permalink to this definition"></a></dt>
+<dd><p>removes any non-pdb lines from the pdb file before running pqr2pdb. 
+Such lines are added by pyrosetta and give warnings in pqr2pdb</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="potentials.Potentials.get_per_atom_areas_and_potentials">
+<span class="sig-prename descclassname"><span class="pre">Potentials.</span></span><span class="sig-name descname"><span class="pre">get_per_atom_areas_and_potentials</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#potentials.Potentials.get_per_atom_areas_and_potentials" title="Permalink to this definition"></a></dt>
+<dd><p>computes and sets per atom averages <cite>areas</cite> and <cite>potentials</cite></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="potentials.Potentials.get_average_and_fluctuations_of_potential">
+<span class="sig-prename descclassname"><span class="pre">Potentials.</span></span><span class="sig-name descname"><span class="pre">get_average_and_fluctuations_of_potential</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#potentials.Potentials.get_average_and_fluctuations_of_potential" title="Permalink to this definition"></a></dt>
+<dd><p>computes and sets overall averages <cite>psi_av</cite> and <cite>delta_psi_sq</cite></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="potentials.Potentials.run_pqr2pdb">
+<span class="sig-prename descclassname"><span class="pre">Potentials.</span></span><span class="sig-name descname"><span class="pre">run_pqr2pdb</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#potentials.Potentials.run_pqr2pdb" title="Permalink to this definition"></a></dt>
+<dd><p>runs pqr2pdb, using same options as used in PyMol `</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="potentials.Potentials.run_apbs">
+<span class="sig-prename descclassname"><span class="pre">Potentials.</span></span><span class="sig-name descname"><span class="pre">run_apbs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#potentials.Potentials.run_apbs" title="Permalink to this definition"></a></dt>
+<dd><p>runs APBS, using input file <cite>apbs_inputfile</cite>, produced from <cite>apbs_template</cite> `</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="potentials.Potentials.make_apbs_inputfile">
+<span class="sig-prename descclassname"><span class="pre">Potentials.</span></span><span class="sig-name descname"><span class="pre">make_apbs_inputfile</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#potentials.Potentials.make_apbs_inputfile" title="Permalink to this definition"></a></dt>
+<dd><p>produces <cite>apbs_inputfile</cite> from <cite>apbs_template</cite> plus the data items <cite>pqr_file</cite> and <cite>dx_file</cite></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="potentials.Potentials.remove_intermediate_files">
+<span class="sig-prename descclassname"><span class="pre">Potentials.</span></span><span class="sig-name descname"><span class="pre">remove_intermediate_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#potentials.Potentials.remove_intermediate_files" title="Permalink to this definition"></a></dt>
+<dd><p>removes intermediate files <cite>dx_file</cite> , <cite>pqr_file</cite> , <cite>àpbs_in</cite> , <cite>log_file</cite></p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="sas.html" class="btn btn-neutral float-left" title="module sas" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="geometry.html" class="btn btn-neutral float-right" title="module geometry" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Renko de Vries.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
