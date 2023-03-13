@@ -6,6 +6,7 @@ design protein surfaces that minimize fluctuations of surface electrostatic pote
 * pyrosetta
 * numpy, scipy
 * gridData
+* apbs, pdq2pdb
 
 ## getting started:
  
