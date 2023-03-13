@@ -17,4 +17,4 @@ from from the chargedesign project directory within the (chargedesign) conda
 environment.
 
 * background: theory/chargedesign_theory.pdf
-* documentation: docs/build/html/index.html
+* documentation: docs/build/html/index.html (access from the local copy of the repository, does not work from within github)
