@@ -1,6 +1,13 @@
 # chargedesign
- choose protein surface residues minimizing fluctuations of surface electrostatic potential
+design protein surfaces that minimize fluctuations of surface electrostatic potential
+
+## dependencies:
+
+* pyrosetta
+* numpy, scipy
+* gridData
+
+## getting started:
  
 * background: theory/chargedesign_theory.pdf
 * documentation: docs/build/html/index.html
-* suggested additional output folders (add yourselves): pml, pdb, residuesets, res, scores   
