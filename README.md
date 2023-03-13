@@ -1,5 +1,5 @@
 # chargedesign
-design protein surfaces that minimize fluctuations of surface electrostatic potential
+design protein surfaces that minimize fluctuations of surface electrostatic potential (for Cn symmetric multimers)
 
 ## dependencies:
 
