@@ -116,7 +116,7 @@ class Potentials:
 		self.get_per_atom_areas_and_potentials()
 		print("...chargedesign.potentials: calculate average and fluctuations of protein potential")
 		self.get_average_and_fluctuations_of_potential()
-		print("...chargedesign.potentials: done, removing intermediate files")   
+		print("...chargedesign.potentials: done, removing intermediate files\n")   
 		self.remove_intermediate_files()
 	def clean_pdb(self):
 		"""

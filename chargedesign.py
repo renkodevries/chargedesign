@@ -205,8 +205,8 @@ if __name__ == "__main__":
 		delta = scores["delta_psi_sq"] - scores_old["delta_psi_sq"]
 		boltzmann = math.exp(-delta/kT_sampling)
 		xi = random.random()
-		if (delta < 0.0 or boltzmann > xi or n==0): 
-			# accept: do nothing, first step is always accepted. 
+		if (delta < 0.0 or boltzmann > xi or n==1): 
+			# accept: do nothing, first step (n==1) is always accepted. 
 			pass
 		else: 
 			# reject: revert to old pose and old scores
@@ -214,7 +214,7 @@ if __name__ == "__main__":
 			pose.dump_pdb(pdb_out(n))
 			scores = scores_old
 
-		print("\n ====> chargedesign annealing step "+str(n)+"done, saving results.\n") 
+		print("\n ====> chargedesign annealing step "+str(n)+" done, saving results.\n") 
 		chargedesign_utilities.save_scores(score_file,scores,pdb_out(n),n)
 	
 	print("done.") 

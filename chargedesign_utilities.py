@@ -66,14 +66,18 @@ def get_scores(pose,pdb_out,exclude_residues,scorefxn):
 	pose.dump_pdb(pdb_out)
 	
 	# calculate electrostatic potential averages
+	print("...chargedesign_utilities.get_score: calculate averages of electrostatic potential at solvent acessible surface")
 	pot = potentials.Potentials(pdb_out,exclude_residues)
 	scores["psi_av"] = pot.psi_av
 	scores["delta_psi_sq"] = pot.delta_psi_sq 
 	
 	# calculate rosetta energy
+	print("...chargedesign_utilities.get_score: calculate rosetta energy")
 	scores["rosetta_energy"] = scorefxn(pose)
 	
 	# get sequence scores
+	print("...chargedesign_utilities.get_score: calculate sequence scores")
+	scores["rosetta_energy"] = scorefxn(pose)
 	charge = 0
 	n_plus = 0
 	n_min = 0
