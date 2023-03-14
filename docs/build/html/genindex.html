@@ -40,16 +40,14 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="makeresiduesets.html">script makeresiduesets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chargedesign.html">script chargedesign</a></li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="chargedesign_utilities.html">module chargedesign_utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dx.html">module dx</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sas.html">module sas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="potentials.html">module potentials</a></li>
-<li class="toctree-l1"><a class="reference internal" href="geometry.html">module geometry</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pdbatom.html">module pdbatom</a></li>
-<li class="toctree-l1"><a class="reference internal" href="residuesets.html">module residuesets</a></li>
 </ul>
 
         </div>
@@ -91,6 +89,7 @@
  | <a href="#P"><strong>P</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
+ | <a href="#W"><strong>W</strong></a>
  
 </div>
 <h2 id="_">_</h2>
@@ -127,8 +126,17 @@
         <li><a href="chargedesign.html#module-chargedesign">module</a>
 </li>
       </ul></li>
+      <li>
+    chargedesign_utilities
+
+      <ul>
+        <li><a href="chargedesign_utilities.html#module-chargedesign_utilities">module</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="chargedesign_utilities.html#chargedesign_utilities.check_symmetry_file">check_symmetry_file() (in module chargedesign_utilities)</a>
+</li>
       <li><a href="potentials.html#potentials.Potentials.clean_pdb">clean_pdb() (potentials.Potentials method)</a>
 </li>
       <li><a href="sas.html#sas.Sas.compute_sas">compute_sas() (sas.Sas method)</a>
@@ -164,6 +172,10 @@
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="chargedesign_utilities.html#chargedesign_utilities.find_neighbours">find_neighbours() (in module chargedesign_utilities)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pdbatom.html#pdbatom.PdbAtom.format">format() (pdbatom.PdbAtom method)</a>
 </li>
   </ul></td>
@@ -174,20 +186,13 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sas.html#sas.Sas.generate_sphere_points">generate_sphere_points() (sas.Sas method)</a>
 </li>
-      <li>
-    geometry
-
-      <ul>
-        <li><a href="geometry.html#module-0">module</a>
-</li>
-      </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="potentials.html#potentials.Potentials.get_average_and_fluctuations_of_potential">get_average_and_fluctuations_of_potential() (potentials.Potentials method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="potentials.html#potentials.Potentials.get_per_atom_areas_and_potentials">get_per_atom_areas_and_potentials() (potentials.Potentials method)</a>
 </li>
-      <li><a href="geometry.html#geometry.get_rcm">get_rcm() (in module geometry)</a>
+      <li><a href="chargedesign_utilities.html#chargedesign_utilities.get_scores">get_scores() (in module chargedesign_utilities)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -206,29 +211,18 @@
       <li><a href="potentials.html#potentials.Potentials.make_apbs_inputfile">make_apbs_inputfile() (potentials.Potentials method)</a>
 </li>
       <li>
-    makeresiduesets
-
-      <ul>
-        <li><a href="makeresiduesets.html#module-makeresiduesets">module</a>
-</li>
-      </ul></li>
-      <li>
     module
 
       <ul>
         <li><a href="chargedesign.html#module-chargedesign">chargedesign</a>
 </li>
+        <li><a href="chargedesign_utilities.html#module-chargedesign_utilities">chargedesign_utilities</a>
+</li>
         <li><a href="dx.html#module-0">dx</a>
-</li>
-        <li><a href="geometry.html#module-0">geometry</a>
-</li>
-        <li><a href="makeresiduesets.html#module-makeresiduesets">makeresiduesets</a>
 </li>
         <li><a href="pdbatom.html#module-0">pdbatom</a>
 </li>
         <li><a href="potentials.html#module-0">potentials</a>
-</li>
-        <li><a href="residuesets.html#module-0">residuesets</a>
 </li>
         <li><a href="sas.html#module-0">sas</a>
 </li>
@@ -250,6 +244,8 @@
       </ul></li>
       <li><a href="pdbatom.html#pdbatom.PdbAtom">PdbAtom (class in pdbatom)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     potentials
 
@@ -257,15 +253,11 @@
         <li><a href="potentials.html#module-0">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="potentials.html#potentials.Potentials">Potentials (class in potentials)</a>
 </li>
       <li><a href="pdbatom.html#pdbatom.PdbAtom.print">print() (pdbatom.PdbAtom method)</a>
 </li>
       <li><a href="sas.html#sas.Sas.print_parameter_values">print_parameter_values() (sas.Sas method)</a>
-</li>
-      <li><a href="residuesets.html#residuesets.pyrosettaselector_to_residueset">pyrosettaselector_to_residueset() (in module residuesets)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -275,37 +267,8 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="potentials.html#potentials.Potentials.remove_intermediate_files">remove_intermediate_files() (potentials.Potentials method)</a>
 </li>
-      <li><a href="residuesets.html#residuesets.residueset_close_to_target_residueset">residueset_close_to_target_residueset() (in module residuesets)</a>
-</li>
-      <li><a href="residuesets.html#residuesets.residueset_surface">residueset_surface() (in module residuesets)</a>
-</li>
-      <li><a href="residuesets.html#residuesets.residueset_to_charge">residueset_to_charge() (in module residuesets)</a>
-</li>
-      <li><a href="residuesets.html#residuesets.residueset_to_composition">residueset_to_composition() (in module residuesets)</a>
-</li>
-      <li><a href="residuesets.html#residuesets.residueset_to_pymolselection">residueset_to_pymolselection() (in module residuesets)</a>
-</li>
-      <li><a href="residuesets.html#residuesets.residueset_to_pyrosettamask">residueset_to_pyrosettamask() (in module residuesets)</a>
-</li>
-      <li><a href="residuesets.html#residuesets.residueset_to_pyrosettaselector">residueset_to_pyrosettaselector() (in module residuesets)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="residuesets.html#residuesets.residueset_to_resfile">residueset_to_resfile() (in module residuesets)</a>
-</li>
-      <li>
-    residuesets
-
-      <ul>
-        <li><a href="residuesets.html#module-0">module</a>
-</li>
-      </ul></li>
-      <li><a href="geometry.html#geometry.rotate_x">rotate_x() (in module geometry)</a>
-</li>
-      <li><a href="geometry.html#geometry.rotate_y">rotate_y() (in module geometry)</a>
-</li>
-      <li><a href="geometry.html#geometry.rotate_z">rotate_z() (in module geometry)</a>
-</li>
       <li><a href="potentials.html#potentials.Potentials.run_apbs">run_apbs() (potentials.Potentials method)</a>
 </li>
       <li><a href="potentials.html#potentials.Potentials.run_pqr2pdb">run_pqr2pdb() (potentials.Potentials method)</a>
@@ -323,13 +286,23 @@
         <li><a href="sas.html#module-0">module</a>
 </li>
       </ul></li>
+      <li><a href="sas.html#sas.Sas">Sas (class in sas)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sas.html#sas.Sas">Sas (class in sas)</a>
+      <li><a href="chargedesign_utilities.html#chargedesign_utilities.save_scores">save_scores() (in module chargedesign_utilities)</a>
 </li>
       <li><a href="sas.html#sas.Sas.set_atom_position_and_radius_arrays">set_atom_position_and_radius_arrays() (sas.Sas method)</a>
 </li>
       <li><a href="sas.html#sas.Sas.set_default_parameter_values">set_default_parameter_values() (sas.Sas method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="chargedesign_utilities.html#chargedesign_utilities.write_resfile">write_resfile() (in module chargedesign_utilities)</a>
 </li>
   </ul></td>
 </tr></table>

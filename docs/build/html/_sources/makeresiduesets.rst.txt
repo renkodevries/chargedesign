@@ -1,4 +1,0 @@
-script makeresiduesets
-######################
-.. automodule:: makeresiduesets
-

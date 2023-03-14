@@ -1,8 +1,0 @@
-{
-"pdb_symm" : "pdb/in/M_C3.pdb",
-"contact_distance_interface" : 7,
-"residuesets_out_filename" : "residuesets/M_residuesets.json",
-"pml_out_filename" : "pml/M_designable.pml",
-"composition_out_filename" : "residuesets/M_comp.json",
-"exclude_residues" : [1,2,3,4,5,6,273,274,275,276,277,278,279]
-}

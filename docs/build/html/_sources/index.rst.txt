@@ -7,24 +7,22 @@
 **************************
 chargedesign documentation
 **************************
-scripts
-#######
+main script
+###########
 
 .. toctree::
-	makeresiduesets
 	chargedesign
 
 modules
 #######
 
 .. toctree::
+   chargedesign_utilities
    dx
    sas
    potentials
-   geometry
    pdbatom
-   residuesets
-
+ 
 
 
 

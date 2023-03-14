@@ -19,8 +19,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="module dx" href="dx.html" />
-    <link rel="prev" title="script makeresiduesets" href="makeresiduesets.html" /> 
+    <link rel="next" title="module chargedesign_utilities" href="chargedesign_utilities.html" />
+    <link rel="prev" title="chargedesign documentation" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,16 +43,19 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="makeresiduesets.html">script makeresiduesets</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">script chargedesign</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">script chargedesign</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#description">description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#input">input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#folders">folders</a></li>
+</ul>
+</li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="chargedesign_utilities.html">module chargedesign_utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dx.html">module dx</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sas.html">module sas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="potentials.html">module potentials</a></li>
-<li class="toctree-l1"><a class="reference internal" href="geometry.html">module geometry</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pdbatom.html">module pdbatom</a></li>
-<li class="toctree-l1"><a class="reference internal" href="residuesets.html">module residuesets</a></li>
 </ul>
 
         </div>
@@ -81,35 +84,43 @@
              
   <section id="module-chargedesign">
 <span id="script-chargedesign"></span><h1>script chargedesign<a class="headerlink" href="#module-chargedesign" title="Permalink to this heading"></a></h1>
-<p>does simulated annealing to find identities for surface residues that 
+<section id="description">
+<h2>description<a class="headerlink" href="#description" title="Permalink to this heading"></a></h2>
+<p>does Metropolis Monte Carlo search to find identities of surface residues that 
 minimize the fluctuations of average electrostatic potential on the solvent accessible
-surface of a symmetric protein multimer. Call as:</p>
+surface of a symmetric protein multimer. The input multimer structure must already have been 
+rosetta optimized such that a symmetrize operation on its first chain (with provided symmetry file)
+correctly gives the multimer structure. Call as:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">chargedesign</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
-<p>Inputfile is <cite>input/chargedesign.json</cite>, sample imputfile:</p>
+</section>
+<section id="input">
+<h2>input<a class="headerlink" href="#input" title="Permalink to this heading"></a></h2>
+<p>Inputfile is <cite>input/chargedesign.json</cite>, sample inputfile:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="s2">&quot;pdb_in&quot;</span> <span class="o">:</span> <span class="s2">&quot;pdb/in/M_C3_Q6.pdb&quot;</span><span class="p">,</span>
+<span class="s2">&quot;pdb_in&quot;</span> <span class="o">:</span> <span class="s2">&quot;pdb/in/M_C3.pdb&quot;</span><span class="p">,</span>
 <span class="s2">&quot;pdb_out_folder&quot;</span> <span class="o">:</span> <span class="s2">&quot;pdb/out/&quot;</span><span class="p">,</span>
 <span class="s2">&quot;pdb_out_prefix&quot;</span> <span class="o">:</span> <span class="s2">&quot;_&quot;</span><span class="p">,</span>
-<span class="s2">&quot;symmfile&quot;</span> <span class="o">:</span> <span class="s2">&quot;sym/c3.symm&quot;</span><span class="p">,</span>
-<span class="s2">&quot;designable&quot;</span> <span class="o">:</span> 
+<span class="s2">&quot;symm_file&quot;</span> <span class="o">:</span> <span class="s2">&quot;sym/c3.symm&quot;</span><span class="p">,</span>
+<span class="s2">&quot;charge_file&quot;</span> <span class="o">:</span> <span class="s2">&quot;constraints/M_chargeadjust.charge&quot;</span><span class="p">,</span>
+<span class="s2">&quot;comp_file&quot;</span> <span class="o">:</span> <span class="s2">&quot;constraints/M_chargeadjust.comp&quot;</span><span class="p">,</span>
+<span class="s2">&quot;score_file&quot;</span> <span class="o">:</span> <span class="s2">&quot;scores/M_chargedesign_scores.txt&quot;</span><span class="p">,</span>
+<span class="s2">&quot;designable_residues&quot;</span> <span class="o">:</span> 
 <span class="p">[</span>
 <span class="mf">257</span><span class="p">,</span><span class="mf">258</span><span class="p">,</span><span class="mf">261</span><span class="p">,</span><span class="mf">264</span><span class="p">,</span><span class="mf">265</span><span class="p">,</span><span class="mf">268</span><span class="p">,</span><span class="mf">269</span><span class="p">,</span><span class="mf">272</span><span class="p">,</span><span class="mf">17</span><span class="p">,</span><span class="mf">21</span><span class="p">,</span><span class="mf">25</span><span class="p">,</span><span class="mf">28</span><span class="p">,</span><span class="mf">29</span><span class="p">,</span><span class="mf">31</span><span class="p">,</span><span class="mf">32</span><span class="p">,</span><span class="mf">34</span><span class="p">,</span><span class="mf">38</span><span class="p">,</span><span class="mf">42</span><span class="p">,</span><span class="mf">62</span><span class="p">,</span><span class="mf">65</span><span class="p">,</span><span class="mf">68</span><span class="p">,</span>
 <span class="mf">72</span><span class="p">,</span><span class="mf">76</span><span class="p">,</span><span class="mf">79</span><span class="p">,</span><span class="mf">83</span><span class="p">,</span><span class="mf">87</span><span class="p">,</span><span class="mf">90</span><span class="p">,</span><span class="mf">93</span><span class="p">,</span><span class="mf">94</span><span class="p">,</span><span class="mf">96</span><span class="p">,</span><span class="mf">103</span><span class="p">,</span><span class="mf">124</span><span class="p">,</span><span class="mf">125</span><span class="p">,</span><span class="mf">127</span><span class="p">,</span><span class="mf">130</span><span class="p">,</span><span class="mf">134</span><span class="p">,</span><span class="mf">138</span><span class="p">,</span><span class="mf">141</span><span class="p">,</span><span class="mf">145</span><span class="p">,</span><span class="mf">149</span><span class="p">,</span><span class="mf">152</span><span class="p">,</span>
 <span class="mf">155</span><span class="p">,</span><span class="mf">186</span><span class="p">,</span><span class="mf">187</span><span class="p">,</span><span class="mf">189</span><span class="p">,</span><span class="mf">196</span><span class="p">,</span><span class="mf">200</span><span class="p">,</span><span class="mf">203</span><span class="p">,</span><span class="mf">207</span><span class="p">,</span><span class="mf">211</span><span class="p">,</span><span class="mf">214</span><span class="p">,</span><span class="mf">217</span><span class="p">,</span><span class="mf">218</span><span class="p">,</span><span class="mf">219</span><span class="p">,</span><span class="mf">230</span><span class="p">,</span><span class="mf">237</span><span class="p">,</span><span class="mf">241</span><span class="p">,</span><span class="mf">245</span><span class="p">,</span><span class="mf">248</span><span class="p">,</span>
 <span class="mf">249</span><span class="p">,</span><span class="mf">250</span><span class="p">,</span><span class="mf">251</span><span class="p">,</span><span class="mf">253</span><span class="p">,</span><span class="mf">254</span>
 <span class="p">],</span>
-<span class="s2">&quot;average_potentials_exclude_residues&quot;</span> <span class="o">:</span> 
+<span class="s2">&quot;exclude_residues&quot;</span> <span class="o">:</span> 
 <span class="p">[</span>
 <span class="mf">39</span><span class="p">,</span>  <span class="mf">40</span><span class="p">,</span> <span class="mf">41</span><span class="p">,</span> <span class="mf">42</span><span class="p">,</span> <span class="mf">43</span><span class="p">,</span> <span class="mf">44</span><span class="p">,</span> <span class="mf">45</span><span class="p">,</span> <span class="mf">46</span><span class="p">,</span> <span class="mf">47</span><span class="p">,</span> <span class="mf">48</span><span class="p">,</span> <span class="mf">49</span><span class="p">,</span> <span class="mf">50</span><span class="p">,</span> <span class="mf">51</span><span class="p">,</span> <span class="mf">52</span><span class="p">,</span> <span class="mf">53</span><span class="p">,</span> <span class="mf">54</span><span class="p">,</span>
 <span class="mf">101</span><span class="p">,</span><span class="mf">102</span><span class="p">,</span><span class="mf">103</span><span class="p">,</span><span class="mf">104</span><span class="p">,</span><span class="mf">105</span><span class="p">,</span><span class="mf">106</span><span class="p">,</span><span class="mf">107</span><span class="p">,</span><span class="mf">108</span><span class="p">,</span><span class="mf">109</span><span class="p">,</span><span class="mf">110</span><span class="p">,</span><span class="mf">111</span><span class="p">,</span><span class="mf">112</span><span class="p">,</span><span class="mf">113</span><span class="p">,</span><span class="mf">114</span><span class="p">,</span><span class="mf">115</span><span class="p">,</span><span class="mf">116</span><span class="p">,</span>
 <span class="mf">163</span><span class="p">,</span><span class="mf">164</span><span class="p">,</span><span class="mf">165</span><span class="p">,</span><span class="mf">166</span><span class="p">,</span><span class="mf">167</span><span class="p">,</span><span class="mf">168</span><span class="p">,</span><span class="mf">169</span><span class="p">,</span><span class="mf">170</span><span class="p">,</span><span class="mf">171</span><span class="p">,</span><span class="mf">172</span><span class="p">,</span><span class="mf">173</span><span class="p">,</span><span class="mf">174</span><span class="p">,</span><span class="mf">175</span><span class="p">,</span><span class="mf">176</span><span class="p">,</span><span class="mf">177</span><span class="p">,</span><span class="mf">178</span>
 <span class="p">],</span>
-<span class="s2">&quot;chargefile&quot;</span> <span class="o">:</span> <span class="s2">&quot;constraints/M_chargeadjust.charge&quot;</span><span class="p">,</span>
-<span class="s2">&quot;compfile&quot;</span> <span class="o">:</span> <span class="s2">&quot;constraints/M_chargeadjust.comp&quot;</span><span class="p">,</span>
-<span class="s2">&quot;scorefile&quot;</span> <span class="o">:</span> <span class="s2">&quot;scores/M_chargedesign_scores.txt&quot;</span><span class="p">,</span>
-<span class="s2">&quot;kT_sampling&quot;</span> <span class="o">:</span> <span class="mf">0.005</span><span class="p">,</span>
+<span class="s2">&quot;repack_distance_treshold&quot;</span> <span class="o">:</span> <span class="mf">7.0</span><span class="p">,</span>
+<span class="s2">&quot;kT_sampling&quot;</span> <span class="o">:</span> <span class="mf">0.1</span><span class="p">,</span>
 <span class="s2">&quot;n_mutate&quot;</span> <span class="o">:</span> <span class="mf">4</span><span class="p">,</span>
 <span class="s2">&quot;n_steps&quot;</span> <span class="o">:</span> <span class="mf">10000</span>       
 <span class="p">}</span>
@@ -120,24 +131,45 @@ surface of a symmetric protein multimer. Call as:</p>
 <li><p><cite>pdb_in</cite> is  a pdb file containing the input structure, which should be a Cn symmetric multimer.</p></li>
 <li><p><cite>pdb_out_folder</cite> is the folder where output structures will be written</p></li>
 <li><p><cite>pdb_out_prefix</cite> is used in the output filename in between the <cite>pdb_in</cite> filename and the output sequence number</p></li>
-<li><p><cite>symmfile</cite> is the rosetta symmetry file that turns the monomer (chain A of pdb_in) into the correct multimer structure</p></li>
-<li><p><cite>designable</cite> is the set of (surface) residues that can in principle be mutated. This can be generated with the script <cite>getresiduesets.py</cite></p></li>
-<li><p><cite>average_potentials_exclude_residues</cite> is the residueset to be excluded from the calculation of the averages of the electrostatic potential</p></li>
+<li><p><cite>symm_file</cite> is the rosetta symmetry file that turns the monomer (first chain of pdb_in) into the correct multimer structure</p></li>
 <li><p><cite>chargefile</cite> is the rosetta charge file that constrains the net charge of the protein</p></li>
-<li><p><cite>compfile</cite> is the rosetta comp file that constrains the aminoacid composition of the protein</p></li>
-<li><p><cite>scorefile</cite> has the output scores</p></li>
+<li><p><cite>comp_file</cite> is the rosetta comp file that constrains the aminoacid composition of the protein</p></li>
+<li><p><cite>score_file</cite> has the output scores</p></li>
+<li><p><cite>designable_residues</cite> is the set of (surface) residues that can in principle be mutated.</p></li>
+<li><p><cite>exclude_residues</cite> is the residueset to be excluded from the calculation of the averages of the electrostatic potential</p></li>
+<li><p><cite>repack_distance_treshold</cite> residues within this distance (in Angstrom) from the residues to be mutated, will be repacked.</p></li>
 <li><p><cite>kT_sampling</cite> controls the fluctuations of the score allowed in the simulated annealing search.</p></li>
 <li><p><cite>n_mutate</cite> is the number of mutations per simulated annealing step, residues to be mutated are selected randomly from the <cite>designable</cite> residueset.</p></li>
 <li><p><cite>n_steps</cite> is the number of simulated annealing steps</p></li>
 </ul>
+</section>
+<section id="folders">
+<h2>folders<a class="headerlink" href="#folders" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><cite>input</cite>  - Must have <cite>chargedesign.json</cite> inputfile</p></li>
+<li><p><cite>pdb</cite> - Preferably, store input and output pdb files here, for example in subfolders <cite>pdb/in</cite> and <cite>pdb/out</cite></p></li>
+<li><p><cite>constraints</cite> - Preferred location for rosetta charge-constraint and composition constraint files <cite>charge_file</cite> and <cite>comp_file</cite></p></li>
+<li><p><cite>apbs</cite> - Anything related to pqr2pdb and apbs goes here. Apbs input parameters are in the template file <cite>apbs/apbs_template.in</cite>, which must already be present. The .pqr outputfiles of pqr2pdb, the .in inputfiles for apbs, the .log files of apbs the .dx outputfiles of apbs are all written to the apbs folder, and deleted when no longer needed. For calculating protein charges used by apbs, we call pdb2pqr with these flags:</p></li>
+</ul>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pdb2pqr30 --ff<span class="o">=</span>AMBER --titration-state-method<span class="o">=</span>propka --with-ph<span class="o">=</span><span class="m">7</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><cite>docs</cite> - Sphinx documentation.</p></li>
+<li><p><cite>res</cite> - Temporary rosetta resfiles generated by the script for doing the mutations and repacking are saved here.</p></li>
+<li><p><cite>scores</cite> - Preferred folder for output run scores.</p></li>
+<li><p><cite>sym</cite> - Preferred folder for rosetta symmetry files</p></li>
+<li><p><cite>theory</cite> - Folder with some further background information</p></li>
+</ul>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="makeresiduesets.html" class="btn btn-neutral float-left" title="script makeresiduesets" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="dx.html" class="btn btn-neutral float-right" title="module dx" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="chargedesign documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="chargedesign_utilities.html" class="btn btn-neutral float-right" title="module chargedesign_utilities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

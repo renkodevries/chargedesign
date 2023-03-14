@@ -2,23 +2,24 @@
 "pdb_in" : "pdb/in/M_C3_Q6.pdb",
 "pdb_out_folder" : "pdb/out/",
 "pdb_out_prefix" : "_",
-"symmfile" : "sym/c3.symm",
-"designable" : 
+"symm_file" : "sym/c3.symm",
+"charge_file" : "constraints/M_chargeadjust.charge",
+"comp_file" : "constraints/M_chargeadjust.comp",
+"score_file" : "scores/M_chargedesign_scores.txt",
+"designable_residues" : 
 [
 257,258,261,264,265,268,269,272,17,21,25,28,29,31,32,34,38,42,62,65,68,
 72,76,79,83,87,90,93,94,96,103,124,125,127,130,134,138,141,145,149,152,
 155,186,187,189,196,200,203,207,211,214,217,218,219,230,237,241,245,248,
 249,250,251,253,254
 ],
-"average_potentials_exclude_residues" : 
+"exclude_residues" : 
 [
 39,  40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54,
 101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,
 163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178
 ],
-"chargefile" : "constraints/M_chargeadjust.charge",
-"compfile" : "constraints/M_chargeadjust.comp",
-"scorefile" : "scores/M_chargedesign_scores.txt",
+"repack_distance_treshold" : 6.0,
 "kT_sampling" : 0.005,
 "n_mutate" : 4,
 "n_steps" : 10000

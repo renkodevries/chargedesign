@@ -100,25 +100,24 @@ class Potentials:
 		self.psi_av = float()
 		self.delta_psi_sq = float()
 		# do calculations
-		print("\n===> POTENTIALS: clean pdb\n")
+		print("...chargedesign.potentials: clean pdb")
 		self.clean_pdb()
-		print("\n===> POTENTIALS: run_pqr2pdb\n")
+		print("...chargedesign.potentials: run_pqr2pdb")
 		self.run_pqr2pdb()
-		print("\n===> POTENTIALS: make_apbs_inputfile\n")
+		print("...chargedesign.potentials: make_apbs_inputfile")
 		self.make_apbs_inputfile()
-		print("\n===> POTENTIALS: run_apbs\n")
+		print("...chargedesign.potentials: run_apbs")
 		self.run_apbs()
-		print("\n===> POTENTIALS: open apbs map file (dx)\n")
+		print("...chargedesign.potentials: open apbs map file (dx)")
 		self.dx = dx.Dx(self.dx_file+".dx")
-		print("\n===> POTENTIALS: calculate solvent accessible surface\n")
+		print("...chargedesign.potentials: calculate solvent accessible surface")
 		self.sas = sas.Sas(self.pdb_file)
-		print("\n===> POTENTIALS: calculate average atom potentials\n")
+		print("...chargedesign.potentials: calculate average atom potentials")
 		self.get_per_atom_areas_and_potentials()
-		print("\n===> POTENTIALS: calculate average and fluctuations of protein potential\n")
+		print("...chargedesign.potentials: calculate average and fluctuations of protein potential")
 		self.get_average_and_fluctuations_of_potential()
-		print("\n===> POTENTIALS: remove intermediate files\n")   
+		print("...chargedesign.potentials: done, removing intermediate files")   
 		self.remove_intermediate_files()
-		print("\n===> POTENTIALS: done, psi_av = "+str(self.psi_av)+" mV , delta_psi_sq = ",self.delta_psi_sq," mV")   
 	def clean_pdb(self):
 		"""
 		removes any non-pdb lines from the pdb file before running pqr2pdb. 
@@ -196,7 +195,7 @@ class Potentials:
 		option2 = "--titration-state-method=propka"
 		option3 = "--with-ph=7"
 		cmd = "pdb2pqr30"
-		do_pqr = subprocess.run([cmd,option1,option2,option3,self.pdb_file,self.pqr_file])
+		do_pqr = subprocess.run([cmd,option1,option2,option3,self.pdb_file,self.pqr_file],stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 		exitcode = do_pqr.returncode
 		if not (exitcode==0):
 			print("potentials.run_pqr2pdb: error running pdb2pqr, exitcode "+str(exitcode))
@@ -206,7 +205,7 @@ class Potentials:
 		runs APBS, using input file `apbs_inputfile`, produced from `apbs_template` `
 		"""
 		cmd = "apbs"
-		do_apbs = subprocess.run([cmd,self.apbs_inputfile])
+		do_apbs = subprocess.run([cmd,self.apbs_inputfile],stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 		exitcode = do_apbs.returncode
 		if not (exitcode==0):
 			print("potentials.run_apbs: error running apbs, exitcode "+str(exitcode))
@@ -249,5 +248,5 @@ class Potentials:
 		for intermediate_file in intermediate_files:
 			if os.path.isfile(intermediate_file): 
 				os.remove(intermediate_file)
-				print("...removed ",intermediate_file)
+				print(".......removed ",intermediate_file)
 		

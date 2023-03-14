@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>module chargedesign_utilities &mdash; chargedesign 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="module dx" href="dx.html" />
+    <link rel="prev" title="script chargedesign" href="chargedesign.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            chargedesign
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="chargedesign.html">script chargedesign</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">module chargedesign_utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dx.html">module dx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sas.html">module sas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="potentials.html">module potentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pdbatom.html">module pdbatom</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">chargedesign</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">module chargedesign_utilities</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/chargedesign_utilities.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-chargedesign_utilities">
+<span id="module-chargedesign-utilities"></span><h1>module chargedesign_utilities<a class="headerlink" href="#module-chargedesign_utilities" title="Permalink to this heading"></a></h1>
+<p>module containing set of utility functions used in the main script chargedesign.py</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="chargedesign_utilities.check_symmetry_file">
+<span class="sig-prename descclassname"><span class="pre">chargedesign_utilities.</span></span><span class="sig-name descname"><span class="pre">check_symmetry_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pose_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symm_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chargedesign_utilities.check_symmetry_file" title="Permalink to this definition"></a></dt>
+<dd><p>checks symmetry file symm_file: should be for Cn symmetry, with n being equal to the number of chains in pose_in</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pose_in</strong> – pose to be tested</p></li>
+<li><p><strong>symm_file</strong> (<cite>str</cite>) – path to rosetta symmetry file</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="chargedesign_utilities.get_scores">
+<span class="sig-prename descclassname"><span class="pre">chargedesign_utilities.</span></span><span class="sig-name descname"><span class="pre">get_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdb_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_residues</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scorefxn</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chargedesign_utilities.get_scores" title="Permalink to this definition"></a></dt>
+<dd><p>calculates scores after chargedesign metropolis monte-carlo trial move has been performed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pose</strong> (<cite>pyrosetta.rosetta.core.pose.Pose</cite>) – pose after the trial move, used to get sequence and rosetta_energy.</p></li>
+<li><p><strong>pdb_out</strong> (<cite>str</cite>) – path to which the pose will be saved before score calculation (needed for pqr2pdb/apbs calculations which start from pdb file)</p></li>
+<li><p><strong>exclude_residues</strong> (<cite>list</cite> of <cite>int</cite>) – list of pose residue indices (for asymmetric unit) for residues to be excluded from the calculation of averages of the         electrostatic potential over the protein solvent acessible surface.</p></li>
+<li><p><strong>scorefxn</strong> (<cite>pyrosetta.rosetta.core.scoring.ScoreFunction</cite>) – pyrosetta scorefunction for calculating the rosetta_energy</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="chargedesign_utilities.save_scores">
+<span class="sig-prename descclassname"><span class="pre">chargedesign_utilities.</span></span><span class="sig-name descname"><span class="pre">save_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">score_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scores</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdb_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chargedesign_utilities.save_scores" title="Permalink to this definition"></a></dt>
+<dd><p>saves scores of chargedesign metropolis monte-carlo run to score_file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>score_file</strong> (<cite>str</cite>) – path to score_file</p></li>
+<li><p><strong>scores</strong> (<cite>dict</cite>) – dictionary with score information to be saved</p></li>
+<li><p><strong>pdb_out</strong> (<cite>str</cite>) – path to pdb_file to which output of the metropolis monte-carlo trial move (step n) was saved.</p></li>
+<li><p><strong>n</strong> (<cite>int</cite>) – step number of the metropolis monte-carlo run</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="chargedesign_utilities.find_neighbours">
+<span class="sig-prename descclassname"><span class="pre">chargedesign_utilities.</span></span><span class="sig-name descname"><span class="pre">find_neighbours</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_residueset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_threshold</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chargedesign_utilities.find_neighbours" title="Permalink to this definition"></a></dt>
+<dd><p>find residueset of residues close to residues in a target_residueset given some distance_treshold. 
+The target_residueset itself is excluded from the neighbour list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pose</strong> (<cite>pyrosetta.rosetta.core.pose.Pose</cite>) – input pose</p></li>
+<li><p><strong>target_residueset</strong> (<cite>list</cite> of <cite>int</cite>) – residueset of residues close to which we are seeking other residues</p></li>
+<li><p><strong>distance_treshold</strong> (<cite>float</cite>) – distance_treshold in Angstrom</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>residueset</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><cite>list</cite> of <cite>int</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="chargedesign_utilities.write_resfile">
+<span class="sig-prename descclassname"><span class="pre">chargedesign_utilities.</span></span><span class="sig-name descname"><span class="pre">write_resfile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">residueset_nataa</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">residueset_allaa</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chargedesign_utilities.write_resfile" title="Permalink to this definition"></a></dt>
+<dd><p>creates rosetta resfile, given residuesets with NATAA and ALAA entries</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<cite>str</cite>) – path for resfile</p></li>
+<li><p><strong>residueset_nataa</strong> (<cite>list</cite> of <cite>int</cite>) – residueset with NATAA entries</p></li>
+<li><p><strong>residueset_allaa</strong> (<cite>list</cite> of <cite>int</cite>) – residueset with ALLAA entries</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="chargedesign.html" class="btn btn-neutral float-left" title="script chargedesign" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dx.html" class="btn btn-neutral float-right" title="module dx" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Renko de Vries.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

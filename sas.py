@@ -95,11 +95,17 @@ class Sas:
 		self.build_neighbour_list()
 		self.compute_sas()
 	def set_default_parameter_values(self):
-		"""
-		Sets these default parameter values: `probe_radius` = 1.4 Angstrom, 
-		`dots_per_atom` = 50, `neighbourlist_cutoff` = 7.0 Angstrom, 
-		`element_radius` ['C'] = 1.9 Angstrom, `element_radius` ['N']= 1.7 Angstrom,    
-		`element_radius` ['O'] = 1.5 Angstrom, `element_radius` ['S'] = 1.9 Angstrom.
+		r"""
+		Sets these default parameter values: 
+		
+		* `probe_radius` = 1.4 Angstrom 
+		* `dots_per_atom` = 50
+		* `neighbourlist_cutoff` = 7.0 Angstrom 
+		* `element_radius` ['C'] = 1.9 Angstrom
+		* `element_radius` ['N']= 1.7 Angstrom    
+		* `element_radius` ['O'] = 1.5 Angstrom
+		* `element_radius` ['S'] = 1.9 Angstrom
+		
 		"""
 		# lengths in Angstrom
 		self.probe_radius = 1.4
