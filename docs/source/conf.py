@@ -12,9 +12,6 @@
 #
 import os
 import sys
-sourcedir = os.path.abspath('../../')
-print("sourcedir  = ", sourcedir)
-sys.path.insert(0, sourcedir)
 
 # -- Project information -----------------------------------------------------
 
@@ -34,8 +31,15 @@ release = '0.1'
 extensions = [  'sphinx.ext.duration',
     'sphinx.ext.doctest',
     'sphinx.ext.autodoc',  
-	'sphinx.ext.autosummary'
+	'sphinx.ext.autosummary',
+	 'sphinx.ext.intersphinx'
 ]
+
+intersphinx_mapping = {
+    'python': ('https://docs.python.org/3/', None),
+    'sphinx': ('https://www.sphinx-doc.org/en/master/', None),
+}
+intersphinx_disabled_domains = ['std']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
