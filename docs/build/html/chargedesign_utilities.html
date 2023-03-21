@@ -96,7 +96,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="chargedesign_utilities.get_scores">
-<span class="sig-prename descclassname"><span class="pre">chargedesign_utilities.</span></span><span class="sig-name descname"><span class="pre">get_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdb_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_residues</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scorefxn</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chargedesign_utilities.get_scores" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">chargedesign_utilities.</span></span><span class="sig-name descname"><span class="pre">get_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdb_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_residues</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scorefxn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT_sampling</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chargedesign_utilities.get_scores" title="Permalink to this definition"></a></dt>
 <dd><p>calculates scores after chargedesign metropolis monte-carlo trial move has been performed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -105,6 +105,7 @@
 <li><p><strong>pdb_out</strong> (<cite>str</cite>) – path to which the pose will be saved before score calculation (needed for pqr2pdb/apbs calculations which start from pdb file)</p></li>
 <li><p><strong>exclude_residues</strong> (<cite>list</cite> of <cite>int</cite>) – list of pose residue indices (for asymmetric unit) for residues to be excluded from the calculation of averages of the         electrostatic potential over the protein solvent acessible surface.</p></li>
 <li><p><strong>scorefxn</strong> (<cite>pyrosetta.rosetta.core.scoring.ScoreFunction</cite>) – pyrosetta scorefunction for calculating the rosetta_energy</p></li>
+<li><p><strong>kT_sampling</strong> (<cite>float</cite>) – instantaneous value of kT_sampling during simulated annealing, just stored and passed on.</p></li>
 </ul>
 </dd>
 </dl>

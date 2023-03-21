@@ -42,9 +42,12 @@ Inputfile is `input/chargedesign.json`, sample inputfile:
 	163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178
 	],
 	"repack_distance_treshold" : 7.0,
-	"kT_sampling" : 0.1,
 	"n_mutate" : 4,
-	"n_steps" : 10000	
+	"kT_sampling_start" : 1,
+	"kT_sampling_end" : 0.1,
+	"n_steps_hold_start" : 100,
+	"n_steps_hold_end" : 1000,
+	"n_steps_linear_gradient" : 100
 	}
 
 Where:
@@ -59,9 +62,13 @@ Where:
 * `designable_residues` is the set of (surface) residues that can in principle be mutated.
 * `exclude_residues` is the residueset to be excluded from the calculation of the averages of the electrostatic potential
 * `repack_distance_treshold` residues within this distance (in Angstrom) from the residues to be mutated, will be repacked.
-* `kT_sampling` controls the fluctuations of the score allowed in the simulated annealing search.
 * `n_mutate` is the number of mutations per simulated annealing step, residues to be mutated are selected randomly from the `designable` residueset.
-* `n_steps` is the number of simulated annealing steps
+* `kT_sampling_start` . kT_sampling controls the fluctuations of the score allowed in the simulated annealing search, this is the starting value.
+* `kT_sampling_end` final value of kT_sampling.
+* `n_steps_hold_start`  number of initial steps at `kT_sampling_start`
+* `n_steps_hold_end`  number of final steps at `kT_sampling_end`
+* `n_steps_linear_gradient`  number of steps of linear gradient from `kT_sampling_start` to `kT_sampling_end`
+
 	 
 folders 
 *******
@@ -121,16 +128,32 @@ if __name__ == "__main__":
 	designable_residues = input["designable_residues"]
 	exclude_residues = input["exclude_residues"]
 	repack_distance_threshold = input["repack_distance_treshold"]
-	n_steps = input["n_steps"]
 	n_mutate = input["n_mutate"]
-	kT_sampling = input["kT_sampling"]
-
+	n_steps_hold_start = input["n_steps_hold_start"]
+	n_steps_hold_end = input["n_steps_hold_end"]
+	n_steps_linear_gradient = input["n_steps_linear_gradient"]
+	kT_sampling_start = input["kT_sampling_start"]
+	kT_sampling_end = input["kT_sampling_end"]
+	
 	# more filenames
 	pdb_file_basename = os.path.basename(pdb_in).rsplit(".",maxsplit=1)[0]
 	res_dir = "res"
 	res_file = os.path.join(res_dir,scriptname+".res")
 	def pdb_out(n): 
 		return os.path.join(pdb_out_folder,pdb_file_basename+pdb_out_prefix+str(n)+".pdb")
+
+	# annealing profile
+	def get_kT_sampling(n,n_steps_hold_start, n_steps_linear_gradient, n_steps_hold_end):
+		delta_kT = kT_sampling_start - kT_sampling_end
+		kT_step = delta_kT /float(n_steps_linear_gradient)
+		dn = n - n_steps_hold_start
+		if n <= n_steps_hold_start:
+			kT_sampling = kT_sampling_start
+		elif n <= n_steps_hold_start + n_steps_linear_gradient:
+			kT_sampling = kT_sampling_start - dn*kT_step
+		else:
+			kT_sampling = kT_sampling_end
+		return kT_sampling
 
 	print ("\n ====> chargedesign setup: Initialize pyRosetta \n")
 	pyrosetta.init()
@@ -173,17 +196,26 @@ if __name__ == "__main__":
 
 	# initialize scores
 	n=0
-	scores =  chargedesign_utilities.get_scores(pose,pdb_out(n),exclude_residues,scorefxn_noconstraints)
+	kT_sampling = kT_sampling_start
+	scores =  chargedesign_utilities.get_scores(pose,pdb_out(n),exclude_residues,scorefxn_noconstraints,kT_sampling)
 	chargedesign_utilities.save_scores(score_file,scores,pdb_out(n),n)
-	print(scores)
 	
 	print("\n ===>  chargedesign: start simulated annealing steps\n")
-   
-	for n in range(1,n_steps):
+   	
+	# start main loop 			
+	n_total_steps = n_steps_hold_start + n_steps_linear_gradient + n_steps_hold_end
+	for n in range(1,n_total_steps):
 	
+		# set sampling temperature
+		kT_sampling = get_kT_sampling(n,n_steps_hold_start, n_steps_linear_gradient, n_steps_hold_end)
+		print("\n ====> starting new step\n")
+		print("...step number: ",n)
+		print("...sampling temperature kT_sampling: ",kT_sampling)
+		
 		# save stuff from previous round
 		scores_old = scores
 		pose_old.assign(pose)
+		
 		
 		print("\n ====> chargedesign annealing step: pick random residues to be mutated, find neighbouring residues for repacking, round "+str(n)+"\n")
 		mutate = list(numpy.random.choice(designable_residues, size=n_mutate, replace=False))
@@ -201,7 +233,7 @@ if __name__ == "__main__":
 		print("\n...PackRotamersMover done\n")
 	
 		print("\n ====> chargedesign annealing step: get scores and apply Metropolis acceptance criterium, round "+str(n)+"\n") 
-		scores =  chargedesign_utilities.get_scores(pose,pdb_out(n),exclude_residues,scorefxn_noconstraints)
+		scores =  chargedesign_utilities.get_scores(pose,pdb_out(n),exclude_residues,scorefxn_noconstraints,kT_sampling)
 		delta = scores["delta_psi_sq"] - scores_old["delta_psi_sq"]
 		boltzmann = math.exp(-delta/kT_sampling)
 		xi = random.random()
@@ -214,7 +246,8 @@ if __name__ == "__main__":
 			pose.dump_pdb(pdb_out(n))
 			scores = scores_old
 
-		print("\n ====> chargedesign annealing step "+str(n)+" done, saving results.\n") 
+		print("\n ====> chargedesign annealing step done, saving results.\n") 
+		print("...next step: ", n+1)
 		chargedesign_utilities.save_scores(score_file,scores,pdb_out(n),n)
 	
 	print("done.") 

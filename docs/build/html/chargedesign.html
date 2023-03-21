@@ -120,9 +120,12 @@ correctly gives the multimer structure. Call as:</p>
 <span class="mf">163</span><span class="p">,</span><span class="mf">164</span><span class="p">,</span><span class="mf">165</span><span class="p">,</span><span class="mf">166</span><span class="p">,</span><span class="mf">167</span><span class="p">,</span><span class="mf">168</span><span class="p">,</span><span class="mf">169</span><span class="p">,</span><span class="mf">170</span><span class="p">,</span><span class="mf">171</span><span class="p">,</span><span class="mf">172</span><span class="p">,</span><span class="mf">173</span><span class="p">,</span><span class="mf">174</span><span class="p">,</span><span class="mf">175</span><span class="p">,</span><span class="mf">176</span><span class="p">,</span><span class="mf">177</span><span class="p">,</span><span class="mf">178</span>
 <span class="p">],</span>
 <span class="s2">&quot;repack_distance_treshold&quot;</span> <span class="o">:</span> <span class="mf">7.0</span><span class="p">,</span>
-<span class="s2">&quot;kT_sampling&quot;</span> <span class="o">:</span> <span class="mf">0.1</span><span class="p">,</span>
 <span class="s2">&quot;n_mutate&quot;</span> <span class="o">:</span> <span class="mf">4</span><span class="p">,</span>
-<span class="s2">&quot;n_steps&quot;</span> <span class="o">:</span> <span class="mf">10000</span>       
+<span class="s2">&quot;kT_sampling_start&quot;</span> <span class="o">:</span> <span class="mf">1</span><span class="p">,</span>
+<span class="s2">&quot;kT_sampling_end&quot;</span> <span class="o">:</span> <span class="mf">0.1</span><span class="p">,</span>
+<span class="s2">&quot;n_steps_hold_start&quot;</span> <span class="o">:</span> <span class="mf">100</span><span class="p">,</span>
+<span class="s2">&quot;n_steps_hold_end&quot;</span> <span class="o">:</span> <span class="mf">1000</span><span class="p">,</span>
+<span class="s2">&quot;n_steps_linear_gradient&quot;</span> <span class="o">:</span> <span class="mf">100</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -138,9 +141,12 @@ correctly gives the multimer structure. Call as:</p>
 <li><p><cite>designable_residues</cite> is the set of (surface) residues that can in principle be mutated.</p></li>
 <li><p><cite>exclude_residues</cite> is the residueset to be excluded from the calculation of the averages of the electrostatic potential</p></li>
 <li><p><cite>repack_distance_treshold</cite> residues within this distance (in Angstrom) from the residues to be mutated, will be repacked.</p></li>
-<li><p><cite>kT_sampling</cite> controls the fluctuations of the score allowed in the simulated annealing search.</p></li>
 <li><p><cite>n_mutate</cite> is the number of mutations per simulated annealing step, residues to be mutated are selected randomly from the <cite>designable</cite> residueset.</p></li>
-<li><p><cite>n_steps</cite> is the number of simulated annealing steps</p></li>
+<li><p><cite>kT_sampling_start</cite> . kT_sampling controls the fluctuations of the score allowed in the simulated annealing search, this is the starting value.</p></li>
+<li><p><cite>kT_sampling_end</cite> final value of kT_sampling.</p></li>
+<li><p><cite>n_steps_hold_start</cite>  number of initial steps at <cite>kT_sampling_start</cite></p></li>
+<li><p><cite>n_steps_hold_end</cite>  number of final steps at <cite>kT_sampling_end</cite></p></li>
+<li><p><cite>n_steps_linear_gradient</cite>  number of steps of linear gradient from <cite>kT_sampling_start</cite> to <cite>kT_sampling_end</cite></p></li>
 </ul>
 </section>
 <section id="folders">

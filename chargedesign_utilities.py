@@ -41,7 +41,7 @@ def check_symmetry_file(pose_in, symm_file):
 		exit(1)
 	print("...chargedesign_utilities:check_symmetry_file: number of chains in pdb_in  = ",pose_in.num_chains(),", symmetry ", symm)
 
-def get_scores(pose,pdb_out,exclude_residues,scorefxn):
+def get_scores(pose,pdb_out,exclude_residues,scorefxn,kT_sampling):
 	"""
 	
 	calculates scores after chargedesign metropolis monte-carlo trial move has been performed. 
@@ -57,7 +57,9 @@ def get_scores(pose,pdb_out,exclude_residues,scorefxn):
 
 	:param scorefxn: pyrosetta scorefunction for calculating the rosetta_energy
 	:type scorefxn: `pyrosetta.rosetta.core.scoring.ScoreFunction`
-	
+
+	:param kT_sampling: instantaneous value of kT_sampling during simulated annealing, just stored and passed on. 
+	:type kT_sampling: `float`	
 	"""	
 
 	scores  = dict()
@@ -92,6 +94,9 @@ def get_scores(pose,pdb_out,exclude_residues,scorefxn):
 	scores["n_plus"] = n_plus
 	scores["n_min"] = n_min
 	
+	# T_sampling: just store input value
+	scores["kT_sampling"] = kT_sampling
+	
 	return scores
 	
 def save_scores(score_file,scores,pdb_out,n):
@@ -115,7 +120,7 @@ def save_scores(score_file,scores,pdb_out,n):
 	
 	# at start create file and write header, otherwise append
 	if n == 0:
-		header = "step		pdb_file		charge		n_min		n_plus		rosetta_energy (kT)		psi_av (mV)		delta_psi_sq (mV^2)\n" 
+		header = "step		pdb_file		charge		n_min		n_plus		rosetta_energy(kT)		psi_av(mV)		delta_psi_sq(mV^2)   kT_sampling(mV^2)\n" 
 		f = open(score_file,'w')
 		f.write(header)
 	else:
@@ -129,7 +134,8 @@ def save_scores(score_file,scores,pdb_out,n):
 	f.write(str(scores["n_plus"])+"   ")
 	f.write(str(scores["rosetta_energy"])+"   ")
 	f.write(str(scores["psi_av"])+"   ")
-	f.write(str(scores["delta_psi_sq"])+"\n")
+	f.write(str(scores["delta_psi_sq"])+"    ")
+	f.write(str(scores["kT_sampling"])+"\n")
 	f.close()
 
 def find_neighbours(pose,target_residueset,distance_threshold):
