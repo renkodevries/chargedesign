@@ -146,7 +146,7 @@ if __name__ == "__main__":
 	def get_kT_sampling(n,n_steps_hold_start, n_steps_linear_gradient, n_steps_hold_end):
 		delta_kT = kT_sampling_start - kT_sampling_end
 		kT_step = delta_kT /float(n_steps_linear_gradient)
-		dn = n - n_steps_hold_start
+		dn = float(n - n_steps_hold_start)
 		if n <= n_steps_hold_start:
 			kT_sampling = kT_sampling_start
 		elif n <= n_steps_hold_start + n_steps_linear_gradient:
@@ -154,7 +154,7 @@ if __name__ == "__main__":
 		else:
 			kT_sampling = kT_sampling_end
 		return kT_sampling
-
+	
 	print ("\n ====> chargedesign setup: Initialize pyRosetta \n")
 	pyrosetta.init()
 	
@@ -204,7 +204,7 @@ if __name__ == "__main__":
    	
 	# start main loop 			
 	n_total_steps = n_steps_hold_start + n_steps_linear_gradient + n_steps_hold_end
-	for n in range(1,n_total_steps):
+	for n in range(1,n_total_steps+1):
 	
 		# set sampling temperature
 		kT_sampling = get_kT_sampling(n,n_steps_hold_start, n_steps_linear_gradient, n_steps_hold_end)
@@ -247,7 +247,6 @@ if __name__ == "__main__":
 			scores = scores_old
 
 		print("\n ====> chargedesign annealing step done, saving results.\n") 
-		print("...next step: ", n+1)
 		chargedesign_utilities.save_scores(score_file,scores,pdb_out(n),n)
 	
 	print("done.") 
