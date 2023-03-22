@@ -90,14 +90,14 @@
 minimize the fluctuations of average electrostatic potential on the solvent accessible
 surface of a symmetric protein multimer. The input multimer structure must already have been 
 rosetta optimized such that a symmetrize operation on its first chain (with provided symmetry file)
-correctly gives the multimer structure. Call as:</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">chargedesign</span><span class="o">.</span><span class="n">py</span>
+correctly gives the multimer structure. If inputfile is input/input.json, call as:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">chargedesign</span><span class="o">.</span><span class="n">py</span> <span class="nb">input</span><span class="o">/</span><span class="nb">input</span><span class="o">.</span><span class="n">json</span>
 </pre></div>
 </div>
 </section>
 <section id="input">
 <h2>input<a class="headerlink" href="#input" title="Permalink to this heading"></a></h2>
-<p>Inputfile is <cite>input/chargedesign.json</cite>, sample inputfile:</p>
+<p>Sample inputfile:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="s2">&quot;pdb_in&quot;</span> <span class="o">:</span> <span class="s2">&quot;pdb/in/M_C3.pdb&quot;</span><span class="p">,</span>
 <span class="s2">&quot;pdb_out_folder&quot;</span> <span class="o">:</span> <span class="s2">&quot;pdb/out/&quot;</span><span class="p">,</span>

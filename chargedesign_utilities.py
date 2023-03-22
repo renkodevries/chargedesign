@@ -41,7 +41,7 @@ def check_symmetry_file(pose_in, symm_file):
 		exit(1)
 	print("...chargedesign_utilities:check_symmetry_file: number of chains in pdb_in  = ",pose_in.num_chains(),", symmetry ", symm)
 
-def get_scores(pose,pdb_out,exclude_residues,scorefxn,kT_sampling):
+def get_scores(pose,pdb_out,exclude_residues,scorefxn,kT_sampling,n):
 	"""
 	
 	calculates scores after chargedesign metropolis monte-carlo trial move has been performed. 
@@ -60,6 +60,10 @@ def get_scores(pose,pdb_out,exclude_residues,scorefxn,kT_sampling):
 
 	:param kT_sampling: instantaneous value of kT_sampling during simulated annealing, just stored and passed on. 
 	:type kT_sampling: `float`	
+	
+	:param n: instantaneous value of step number during simulated annealing, just stored and passed on. 
+	:type n: `int`	
+	
 	"""	
 
 	scores  = dict()
@@ -94,8 +98,9 @@ def get_scores(pose,pdb_out,exclude_residues,scorefxn,kT_sampling):
 	scores["n_plus"] = n_plus
 	scores["n_min"] = n_min
 	
-	# T_sampling: just store input value
+	# kT_sampling, n: just store input value
 	scores["kT_sampling"] = kT_sampling
+	scores["step"] = n
 	
 	return scores
 	

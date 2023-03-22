@@ -7,16 +7,16 @@ does Metropolis Monte Carlo search to find identities of surface residues that
 minimize the fluctuations of average electrostatic potential on the solvent accessible
 surface of a symmetric protein multimer. The input multimer structure must already have been 
 rosetta optimized such that a symmetrize operation on its first chain (with provided symmetry file)
-correctly gives the multimer structure. Call as:
+correctly gives the multimer structure. If inputfile is input/input.json, call as:
 
 .. code-block:: python3
 
-	python chargedesign.py
+	python chargedesign.py input/input.json
 
 input
 *****
 
-Inputfile is `input/chargedesign.json`, sample inputfile:
+Sample inputfile:
 
 .. code-block:: javascript
 
@@ -91,8 +91,6 @@ folders
 
 """
 
-
-
 import pyrosetta
 import json
 import math
@@ -101,6 +99,7 @@ import os
 import sys
 import numpy
 import random
+import argparse
 
 # local
 import potentials
@@ -110,11 +109,15 @@ if __name__ == "__main__":
 
 	print('\n ====> chargedesign setup: read & parse json input file\n')
 	
+	# cmdline args
+	thisscript = "chargedesign: find surface residues that minimize fluctuations of surface electrostatic potential."
+	parser = argparse.ArgumentParser(description = thisscript)
+	parser.add_argument('json_in',  help = "json input file")
+	args = parser.parse_args()
+
 	# get input
 	scriptname = os.path.basename(__file__).rsplit(".",maxsplit=1)[0]
-	inputdir = "input"
-	inputfile = os.path.join(inputdir,scriptname+".json")
-	with open(inputfile, 'r') as f:
+	with open(args.json_in, 'r') as f:
 		input = json.load(f)
 		
 	# parse input
@@ -138,7 +141,8 @@ if __name__ == "__main__":
 	# more filenames
 	pdb_file_basename = os.path.basename(pdb_in).rsplit(".",maxsplit=1)[0]
 	res_dir = "res"
-	res_file = os.path.join(res_dir,scriptname+".res")
+	def res_file(n):
+		return os.path.join(res_dir,pdb_file_basename+pdb_out_prefix+str(n)+".res")
 	def pdb_out(n): 
 		return os.path.join(pdb_out_folder,pdb_file_basename+pdb_out_prefix+str(n)+".pdb")
 
@@ -197,8 +201,10 @@ if __name__ == "__main__":
 	# initialize scores
 	n=0
 	kT_sampling = kT_sampling_start
-	scores =  chargedesign_utilities.get_scores(pose,pdb_out(n),exclude_residues,scorefxn_noconstraints,kT_sampling)
+	scores =  chargedesign_utilities.get_scores(pose,pdb_out(n),exclude_residues,scorefxn_noconstraints,kT_sampling,n)
+	scores_min = scores
 	chargedesign_utilities.save_scores(score_file,scores,pdb_out(n),n)
+	os.remove(pdb_out(n))
 	
 	print("\n ===>  chargedesign: start simulated annealing steps\n")
    	
@@ -216,7 +222,6 @@ if __name__ == "__main__":
 		scores_old = scores
 		pose_old.assign(pose)
 		
-		
 		print("\n ====> chargedesign annealing step: pick random residues to be mutated, find neighbouring residues for repacking, round "+str(n)+"\n")
 		mutate = list(numpy.random.choice(designable_residues, size=n_mutate, replace=False))
 		repack = chargedesign_utilities.find_neighbours(pose_unit,mutate,repack_distance_threshold)
@@ -224,16 +229,17 @@ if __name__ == "__main__":
 		print("repack = ", repack)
 		
 		print("\n ====> chargedesign annealing step: setup and apply PackRotamersMover, round "+str(n)+"\n")
-		chargedesign_utilities.write_resfile(res_file,repack,mutate)
+		chargedesign_utilities.write_resfile(res_file(n),repack,mutate)
 		task_pack = pyrosetta.standard_packer_task(pose)
-		pyrosetta.rosetta.core.pack.task.parse_resfile(pose, task_pack, res_file)
+		pyrosetta.rosetta.core.pack.task.parse_resfile(pose, task_pack, res_file(n))
 		packer = pyrosetta.rosetta.protocols.minimization_packing.PackRotamersMover(scorefxn, task_pack)
 		packer.apply(pose) 
 		pose.dump_pdb(pdb_out(n))
+		os.remove(res_file(n))
 		print("\n...PackRotamersMover done\n")
 	
 		print("\n ====> chargedesign annealing step: get scores and apply Metropolis acceptance criterium, round "+str(n)+"\n") 
-		scores =  chargedesign_utilities.get_scores(pose,pdb_out(n),exclude_residues,scorefxn_noconstraints,kT_sampling)
+		scores =  chargedesign_utilities.get_scores(pose,pdb_out(n),exclude_residues,scorefxn_noconstraints,kT_sampling,n)
 		delta = scores["delta_psi_sq"] - scores_old["delta_psi_sq"]
 		boltzmann = math.exp(-delta/kT_sampling)
 		xi = random.random()
@@ -245,6 +251,17 @@ if __name__ == "__main__":
 			pose.assign(pose_old)
 			pose.dump_pdb(pdb_out(n))
 			scores = scores_old
+
+		# new absolute minimum ?
+		if (n==1):		# initialize minumum when n = 1
+			scores_min = scores
+		elif (scores["delta_psi_sq"] < scores_min["delta_psi_sq"]): 
+			n_prev_min = scores_min["step"]
+			os.remove(pdb_out(n_prev_min))
+			scores_min = scores
+			print("\n\n...new minimum delta_psi_sq =  ",scores_min["delta_psi_sq"],"mV^2\n\n")
+		else:
+			os.remove(pdb_out(n))
 
 		print("\n ====> chargedesign annealing step done, saving results.\n") 
 		chargedesign_utilities.save_scores(score_file,scores,pdb_out(n),n)
