@@ -1,4 +1,0 @@
-script chargedesign
-######################
-.. automodule:: chargedesign
-

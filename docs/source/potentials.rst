@@ -2,6 +2,10 @@ module potentials
 #################
 
 .. automodule:: potentials
+
+class potentials.Potentials
+***************************
+
 .. autoclass:: potentials.Potentials
 .. automethod:: potentials.Potentials.__init__
 .. automethod:: potentials.Potentials.clean_pdb

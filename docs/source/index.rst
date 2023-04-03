@@ -7,17 +7,12 @@
 **************************
 chargedesign documentation
 **************************
-main script
-###########
-
-.. toctree::
-	chargedesign
 
 modules
 #######
 
 .. toctree::
-   chargedesign_utilities
+   chargedesigner
    dx
    sas
    potentials

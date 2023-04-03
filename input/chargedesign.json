@@ -1,7 +1,7 @@
 {
-"pdb_in" : "pdb/in/M_C3.pdb",
+"pdb_in" : "pdb/in/M_C3_Q12.pdb",
 "pdb_out_folder" : "pdb/out/",
-"pdb_out_prefix" : "_",
+"run_id" : "M_C3_Q12",
 "symm_file" : "sym/c3.symm",
 "charge_file" : "constraints/M_chargeadjust.charge",
 "comp_file" : "constraints/M_chargeadjust.comp",
@@ -16,11 +16,11 @@
  59, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 
  116, 117, 118, 119, 120, 121, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172,
  173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183] ,
-"repack_distance_treshold" : 7.0,
-"kT_sampling_start" : 1,
-"kT_sampling_end" : 0.1,
+"repack_distance_treshold" : 5.0,
+"kT_sampling_start" : 0.05,
+"kT_sampling_end" : 0.01,
 "n_mutate" : 4,
-"n_steps_hold_start" : 5,
-"n_steps_hold_end" : 10,
-"n_steps_linear_gradient" : 5
+"n_steps_hold_start" : 100,
+"n_steps_hold_end" : 100,
+"n_steps_linear_gradient" : 100
 }

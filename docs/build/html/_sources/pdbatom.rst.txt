@@ -2,6 +2,10 @@ module pdbatom
 ##############
 
 .. automodule:: pdbatom
+
+class pdbatom.PdbAtom
+*********************
+
 .. autoclass:: pdbatom.PdbAtom
 .. automethod:: pdbatom.PdbAtom.__init__
 .. automethod:: pdbatom.PdbAtom.print

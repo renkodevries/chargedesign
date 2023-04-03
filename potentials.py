@@ -100,23 +100,23 @@ class Potentials:
 		self.psi_av = float()
 		self.delta_psi_sq = float()
 		# do calculations
-		print("...chargedesign.potentials: clean pdb")
+		print("\n...potentials: clean pdb")
 		self.clean_pdb()
-		print("...chargedesign.potentials: run_pqr2pdb")
+		print("...potentials: run_pqr2pdb")
 		self.run_pqr2pdb()
-		print("...chargedesign.potentials: make_apbs_inputfile")
+		print("...potentials: make_apbs_inputfile")
 		self.make_apbs_inputfile()
-		print("...chargedesign.potentials: run_apbs")
+		print("...potentials: run_apbs")
 		self.run_apbs()
-		print("...chargedesign.potentials: open apbs map file (dx)")
+		print("...potentials: open apbs map file (dx)")
 		self.dx = dx.Dx(self.dx_file+".dx")
-		print("...chargedesign.potentials: calculate solvent accessible surface")
+		print("...potentials: calculate solvent accessible surface")
 		self.sas = sas.Sas(self.pdb_file)
-		print("...chargedesign.potentials: calculate average atom potentials")
+		print("...potentials: calculate average atom potentials")
 		self.get_per_atom_areas_and_potentials()
-		print("...chargedesign.potentials: calculate average and fluctuations of protein potential")
+		print("...potentials: calculate average and fluctuations of protein potential")
 		self.get_average_and_fluctuations_of_potential()
-		print("...chargedesign.potentials: done, removing intermediate files\n")   
+		print("...potentials: done, removing intermediate files\n")   
 		self.remove_intermediate_files()
 	def clean_pdb(self):
 		"""
@@ -245,8 +245,10 @@ class Potentials:
 		apbs_in_f = self.apbs_inputfile
 		log_f = "apbs/"+self.pdb_file_basename+".log"
 		intermediate_files = [pqr_f,dx_f,apbs_in_f,log_f]
+		print("\n")
 		for intermediate_file in intermediate_files:
 			if os.path.isfile(intermediate_file): 
 				os.remove(intermediate_file)
 				print(".......removed ",intermediate_file)
+		print("\n")
 		

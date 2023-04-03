@@ -23,7 +23,7 @@ copyright = '2023, Renko de Vries'
 author = 'Renko de Vries'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1'
+release = '0.2'
 
 
 # -- General configuration ---------------------------------------------------

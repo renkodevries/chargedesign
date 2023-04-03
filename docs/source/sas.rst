@@ -2,6 +2,10 @@ module sas
 ##########
 
 .. automodule:: sas
+
+class sas.Sas
+*************
+
 .. autoclass:: sas.Sas
 .. automethod:: sas.Sas.__init__
 .. automethod:: sas.Sas.set_default_parameter_values

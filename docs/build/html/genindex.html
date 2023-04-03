@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; chargedesign 0.1 documentation</title>
+  <title>Index &mdash; chargedesign 0.2 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -40,10 +40,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="chargedesign.html">script chargedesign</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="chargedesign_utilities.html">module chargedesign_utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chargedesigner.html">module chargedesigner</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dx.html">module dx</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sas.html">module sas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="potentials.html">module potentials</a></li>
@@ -78,6 +75,7 @@
 
 <div class="genindex-jumpbox">
  <a href="#_"><strong>_</strong></a>
+ | <a href="#A"><strong>A</strong></a>
  | <a href="#B"><strong>B</strong></a>
  | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
@@ -89,15 +87,16 @@
  | <a href="#P"><strong>P</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
- | <a href="#W"><strong>W</strong></a>
  
 </div>
 <h2 id="_">_</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dx.html#dx.Dx.__init__">__init__() (dx.Dx method)</a>
+      <li><a href="chargedesigner.html#chargedesigner.ChargeDesigner.__init__">__init__() (chargedesigner.ChargeDesigner method)</a>
 
       <ul>
+        <li><a href="dx.html#dx.Dx.__init__">(dx.Dx method)</a>
+</li>
         <li><a href="pdbatom.html#pdbatom.PdbAtom.__init__">(pdbatom.PdbAtom method)</a>
 </li>
         <li><a href="potentials.html#potentials.Potentials.__init__">(potentials.Potentials method)</a>
@@ -105,6 +104,14 @@
         <li><a href="sas.html#sas.Sas.__init__">(sas.Sas method)</a>
 </li>
       </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="chargedesigner.html#chargedesigner.ChargeDesigner.apply_acceptance_criterium">apply_acceptance_criterium() (chargedesigner.ChargeDesigner method)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -120,22 +127,17 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
-    chargedesign
+    chargedesigner
 
       <ul>
-        <li><a href="chargedesign.html#module-chargedesign">module</a>
+        <li><a href="chargedesigner.html#module-0">module</a>
 </li>
       </ul></li>
-      <li>
-    chargedesign_utilities
-
-      <ul>
-        <li><a href="chargedesign_utilities.html#module-chargedesign_utilities">module</a>
+      <li><a href="chargedesigner.html#chargedesigner.ChargeDesigner">ChargeDesigner (class in chargedesigner)</a>
 </li>
-      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="chargedesign_utilities.html#chargedesign_utilities.check_symmetry_file">check_symmetry_file() (in module chargedesign_utilities)</a>
+      <li><a href="chargedesigner.html#chargedesigner.ChargeDesigner.check_for_new_minimum">check_for_new_minimum() (chargedesigner.ChargeDesigner method)</a>
 </li>
       <li><a href="potentials.html#potentials.Potentials.clean_pdb">clean_pdb() (potentials.Potentials method)</a>
 </li>
@@ -147,6 +149,8 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="chargedesigner.html#chargedesigner.ChargeDesigner.do_trial_move">do_trial_move() (chargedesigner.ChargeDesigner method)</a>
+</li>
       <li>
     dx
 
@@ -172,10 +176,6 @@
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="chargedesign_utilities.html#chargedesign_utilities.find_neighbours">find_neighbours() (in module chargedesign_utilities)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pdbatom.html#pdbatom.PdbAtom.format">format() (pdbatom.PdbAtom method)</a>
 </li>
   </ul></td>
@@ -186,13 +186,11 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="sas.html#sas.Sas.generate_sphere_points">generate_sphere_points() (sas.Sas method)</a>
 </li>
-      <li><a href="potentials.html#potentials.Potentials.get_average_and_fluctuations_of_potential">get_average_and_fluctuations_of_potential() (potentials.Potentials method)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="potentials.html#potentials.Potentials.get_per_atom_areas_and_potentials">get_per_atom_areas_and_potentials() (potentials.Potentials method)</a>
+      <li><a href="potentials.html#potentials.Potentials.get_average_and_fluctuations_of_potential">get_average_and_fluctuations_of_potential() (potentials.Potentials method)</a>
 </li>
-      <li><a href="chargedesign_utilities.html#chargedesign_utilities.get_scores">get_scores() (in module chargedesign_utilities)</a>
+      <li><a href="potentials.html#potentials.Potentials.get_per_atom_areas_and_potentials">get_per_atom_areas_and_potentials() (potentials.Potentials method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -214,9 +212,7 @@
     module
 
       <ul>
-        <li><a href="chargedesign.html#module-chargedesign">chargedesign</a>
-</li>
-        <li><a href="chargedesign_utilities.html#module-chargedesign_utilities">chargedesign_utilities</a>
+        <li><a href="chargedesigner.html#module-0">chargedesigner</a>
 </li>
         <li><a href="dx.html#module-0">dx</a>
 </li>
@@ -288,21 +284,17 @@
       </ul></li>
       <li><a href="sas.html#sas.Sas">Sas (class in sas)</a>
 </li>
+      <li><a href="chargedesigner.html#chargedesigner.ChargeDesigner.save_scores">save_scores() (chargedesigner.ChargeDesigner method)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="chargedesign_utilities.html#chargedesign_utilities.save_scores">save_scores() (in module chargedesign_utilities)</a>
-</li>
       <li><a href="sas.html#sas.Sas.set_atom_position_and_radius_arrays">set_atom_position_and_radius_arrays() (sas.Sas method)</a>
 </li>
       <li><a href="sas.html#sas.Sas.set_default_parameter_values">set_default_parameter_values() (sas.Sas method)</a>
 </li>
-  </ul></td>
-</tr></table>
-
-<h2 id="W">W</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="chargedesign_utilities.html#chargedesign_utilities.write_resfile">write_resfile() (in module chargedesign_utilities)</a>
+      <li><a href="chargedesigner.html#chargedesigner.ChargeDesigner.set_kT_sampling">set_kT_sampling() (chargedesigner.ChargeDesigner method)</a>
+</li>
+      <li><a href="chargedesigner.html#chargedesigner.ChargeDesigner.set_scores">set_scores() (chargedesigner.ChargeDesigner method)</a>
 </li>
   </ul></td>
 </tr></table>

@@ -1,0 +1,1 @@
+fixed folder location for temporary rosetta .res file
